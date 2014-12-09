@@ -54,7 +54,8 @@ output = function (cb) {
 
   cb({
     qm: actor.ioHandler.queueManager,
-    io: actor.ioHandler
+    io: actor.ioHandler,
+    pm: actor.processManager
   });
 
   // not really useful I guess

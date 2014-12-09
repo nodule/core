@@ -62,6 +62,10 @@
         "title": "Queue Manager",
         "type": "QueueManager"
       },
+      "pm": {
+        "title": "Process Manager",
+        "type": "ProcessManager"
+      },
       "io": {
         "title": "Io Handler",
         "type": "IOMapHandler"

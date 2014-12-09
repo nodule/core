@@ -126,32 +126,6 @@
       "fn": "output = function (cb) {\n  if (input.in[input.method]) {\n    cb({\n      out: input.in[input.method].call(input.in, input.args)\n    });\n  } else {\n    cb({\n      error: new Error('No such input method ' + input.method)\n    });\n  }\n};\n"
     },
     {
-      "dependencies": {
-        "npm": {
-          "chix-flow": "0.x.x"
-        }
-      },
-      "ports": {
-        "input": {
-          "flow": {
-            "title": "Flow URI",
-            "type": "string",
-            "required": "true"
-          }
-        },
-        "output": {}
-      },
-      "phrases": {
-        "active": "Creating Sub flow node"
-      },
-      "type": "dynamic",
-      "description": "Chix Actor",
-      "title": "Chix Actor",
-      "ns": "core",
-      "name": "flow",
-      "fn": "var actor = chix_flow.Actor;\n"
-    },
-    {
       "ports": {
         "input": {
           "in": {

@@ -8,6 +8,129 @@
   },
   "nodes": [
     {
+      "dependencies": {
+        "npm": {
+          "chix-flow": "0.x.x"
+        }
+      },
+      "ports": {
+        "input": {
+          "actor": {
+            "title": "Actor",
+            "type": "Actor",
+            "default": null
+          },
+          "loader": {
+            "title": "Loader",
+            "type": "Loader",
+            "default": null
+          },
+          "io": {
+            "title": "IO Handler",
+            "type": "IOMapHandler",
+            "default": null
+          },
+          "pm": {
+            "title": "Process Manager",
+            "type": "ProcessManager",
+            "default": null
+          }
+        },
+        "output": {
+          "actor": {
+            "title": "Actor",
+            "type": "Actor"
+          },
+          "addNode": {
+            "title": "Node added",
+            "type": "xNode"
+          },
+          "removeNode": {
+            "title": "Node removed",
+            "type": "xNode"
+          },
+          "addLink": {
+            "title": "Link added",
+            "type": "xLink"
+          },
+          "removeLink": {
+            "title": "Link removed",
+            "type": "xLink"
+          },
+          "connect": {
+            "title": "Link connected",
+            "type": "xLink"
+          },
+          "disconnect": {
+            "title": "Link disconnected",
+            "type": "xLink"
+          },
+          "qm": {
+            "title": "Queue Manager",
+            "type": "QueueManager"
+          },
+          "io": {
+            "title": "Io Handler",
+            "type": "IOMapHandler"
+          },
+          "error": {
+            "title": "Error",
+            "type": "object"
+          }
+        }
+      },
+      "phrases": {
+        "active": "Exposing Actor"
+      },
+      "description": "Chix Actor",
+      "title": "Actor",
+      "ns": "core",
+      "name": "actor",
+      "fn": "output = function (cb) {\n\n  var actor = input.actor || this.getParent();\n\n  // probably should do almost the same as npmlog monitor\n\n  actor.on('inputRequired', function (data) {\n    cb({\n      error: data\n    });\n  });\n\n  actor.on('error', function (data) {\n    cb({\n      error: data\n    });\n  });\n\n  actor.on('addNode', function (event) {\n    cb({\n      addNode: event.node\n    });\n  });\n\n  actor.on('removeNode', function (event) {\n    cb({\n      removeNode: event.node\n    });\n  });\n\n  actor.on('addLink', function (link) {\n    cb({\n      addLink: link\n    });\n  });\n\n  actor.on('removeLink', function (link) {\n    cb({\n      removeLink: link\n    });\n  });\n\n  actor.ioHandler.on('connect', function (link) {\n    cb({\n      connectLink: link\n    });\n  });\n\n  actor.ioHandler.on('disconnect', function (link) {\n    cb({\n      disconnectLink: link\n    });\n  });\n\n  cb({\n    qm: actor.ioHandler.queueManager,\n    io: actor.ioHandler\n  });\n\n  // not really useful I guess\n  /*\n  actor.ioHandler.on('data', function (link) {\n    cb({\n      disconnectLink: link\n    });\n  });\n  */\n\n};\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "in": {
+            "title": "Input object",
+            "type": "any"
+          },
+          "args": {
+            "title": "Arguments",
+            "type": "array",
+            "default": null
+          },
+          "method": {
+            "title": "Method",
+            "type": "string"
+          }
+        },
+        "output": {
+          "out": {
+            "title": "Output",
+            "type": "any"
+          },
+          "error": {
+            "title": "Error",
+            "type": "Error"
+          }
+        }
+      },
+      "phrases": {
+        "active": "Calling method"
+      },
+      "description": "Calls a method with the args given",
+      "title": "Call a method",
+      "ns": "core",
+      "name": "call",
+      "fn": "output = function (cb) {\n  if (input.in[input.method]) {\n    cb({\n      out: input.in[input.method].call(input.in, input.args)\n    });\n  } else {\n    cb({\n      error: new Error('No such input method ' + input.method)\n    });\n  }\n};\n"
+    },
+    {
+      "dependencies": {
+        "npm": {
+          "chix-flow": "0.x.x"
+        }
+      },
       "ports": {
         "input": {
           "flow": {
@@ -18,9 +141,6 @@
         },
         "output": {}
       },
-      "require": {
-        "chix-flow": "0.x.x"
-      },
       "phrases": {
         "active": "Creating Sub flow node"
       },
@@ -30,6 +150,31 @@
       "ns": "core",
       "name": "flow",
       "fn": "var actor = chix_flow.Actor;\n"
+    },
+    {
+      "ports": {
+        "input": {
+          "in": {
+            "title": "Input object",
+            "type": "any",
+            "async": true
+          }
+        },
+        "output": {
+          "out": {
+            "title": "Output",
+            "type": "any"
+          }
+        }
+      },
+      "phrases": {
+        "active": "Polling data"
+      },
+      "description": "Polls an instance on request",
+      "title": "Polling",
+      "ns": "core",
+      "name": "poll",
+      "fn": "/**\n *\n * Idea is to use :start to trigger output.\n * In which case it just outputs the reference we have\n * In other words make the reference move and become active.\n * It can actually already be done with persist and start and\n * object/create.\n */\non.input.in = function (data) {\n};\n"
     }
   ],
   "twigs": []

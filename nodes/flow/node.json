@@ -1,0 +1,25 @@
+{
+  "name": "flow",
+  "ns": "core",
+  "title": "Chix Actor",
+  "description": "Chix Actor",
+  "type": "dynamic",
+  "phrases": {
+    "active": "Creating Sub flow node"
+  },
+  "ports": {
+    "input": {
+      "flow": {
+        "title": "Flow URI",
+        "type": "string",
+        "required": "true"
+      }
+    },
+    "output": {}
+  },
+  "dependencies": {
+    "npm": {
+      "chix-flow": "0.x.x"
+    }
+  }
+}

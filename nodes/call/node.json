@@ -1,0 +1,36 @@
+{
+  "name": "call",
+  "ns": "core",
+  "title": "Call a method",
+  "description": "Calls a method with the args given",
+  "phrases": {
+    "active": "Calling method"
+  },
+  "ports": {
+    "input": {
+      "in": {
+        "title": "Input object",
+        "type": "any"
+      },
+      "args": {
+        "title": "Arguments",
+        "type": "array",
+        "default": null
+      },
+      "method": {
+        "title": "Method",
+        "type": "string"
+      }
+    },
+    "output": {
+      "out": {
+        "title": "Output",
+        "type": "any"
+      },
+      "error": {
+        "title": "Error",
+        "type": "Error"
+      }
+    }
+  }
+}

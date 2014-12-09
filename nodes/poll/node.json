@@ -1,0 +1,24 @@
+{
+  "name": "poll",
+  "ns": "core",
+  "title": "Polling",
+  "description": "Polls an instance on request",
+  "phrases": {
+    "active": "Polling data"
+  },
+  "ports": {
+    "input": {
+      "in": {
+        "title": "Input object",
+        "type": "any",
+        "async": true
+      }
+    },
+    "output": {
+      "out": {
+        "title": "Output",
+        "type": "any"
+      }
+    }
+  }
+}

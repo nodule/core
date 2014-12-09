@@ -1,0 +1,80 @@
+{
+  "name": "actor",
+  "ns": "core",
+  "title": "Actor",
+  "description": "Chix Actor",
+  "phrases": {
+    "active": "Exposing Actor"
+  },
+  "ports": {
+    "input": {
+      "actor": {
+        "title": "Actor",
+        "type": "Actor",
+        "default": null
+      },
+      "loader": {
+        "title": "Loader",
+        "type": "Loader",
+        "default": null
+      },
+      "io": {
+        "title": "IO Handler",
+        "type": "IOMapHandler",
+        "default": null
+      },
+      "pm": {
+        "title": "Process Manager",
+        "type": "ProcessManager",
+        "default": null
+      }
+    },
+    "output": {
+      "actor": {
+        "title": "Actor",
+        "type": "Actor"
+      },
+      "addNode": {
+        "title": "Node added",
+        "type": "xNode"
+      },
+      "removeNode": {
+        "title": "Node removed",
+        "type": "xNode"
+      },
+      "addLink": {
+        "title": "Link added",
+        "type": "xLink"
+      },
+      "removeLink": {
+        "title": "Link removed",
+        "type": "xLink"
+      },
+      "connect": {
+        "title": "Link connected",
+        "type": "xLink"
+      },
+      "disconnect": {
+        "title": "Link disconnected",
+        "type": "xLink"
+      },
+      "qm": {
+        "title": "Queue Manager",
+        "type": "QueueManager"
+      },
+      "io": {
+        "title": "Io Handler",
+        "type": "IOMapHandler"
+      },
+      "error": {
+        "title": "Error",
+        "type": "object"
+      }
+    }
+  },
+  "dependencies": {
+    "npm": {
+      "chix-flow": "0.x.x"
+    }
+  }
+}

@@ -42,13 +42,13 @@ output = function (cb) {
 
   actor.ioHandler.on('connect', function (link) {
     cb({
-      connectLink: link
+      connect: link
     });
   });
 
   actor.ioHandler.on('disconnect', function (link) {
     cb({
-      disconnectLink: link
+      disconnect: link
     });
   });
 

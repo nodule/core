@@ -52,6 +52,19 @@ output = function (cb) {
     });
   });
 
+  // useally the actor already started so we send what we have
+  // manually
+  Object.keys(actor.nodes).forEach(function(node) {
+    cb({addNode: node});
+  });
+
+  Object.keys(actor.links).forEach(function(links) {
+    cb({addLink: link});
+
+    // also report them all as connected for now
+    cb({connect: link});
+  });
+
   cb({
     qm: actor.ioHandler.queueManager,
     io: actor.ioHandler,

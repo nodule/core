@@ -54,12 +54,12 @@ output = function (cb) {
 
   // useally the actor already started so we send what we have
   // manually
-  Object.keys(actor.nodes).forEach(function(node) {
-    cb({addNode: node});
+  Object.keys(actor.nodes).forEach(function(key) {
+    cb({addNode: actor.nodes[key]});
   });
 
-  Object.keys(actor.links).forEach(function(link) {
-    cb({addLink: link});
+  Object.keys(actor.links).forEach(function(key) {
+    cb({addLink: actor.links[key]});
 
     // also report them all as connected for now
     cb({connect: link});

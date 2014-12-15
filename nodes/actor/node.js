@@ -58,7 +58,7 @@ output = function (cb) {
     cb({addNode: node});
   });
 
-  Object.keys(actor.links).forEach(function(links) {
+  Object.keys(actor.links).forEach(function(link) {
     cb({addLink: link});
 
     // also report them all as connected for now

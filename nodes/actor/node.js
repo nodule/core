@@ -62,7 +62,7 @@ output = function (cb) {
     cb({addLink: actor.links[key]});
 
     // also report them all as connected for now
-    cb({connect: link});
+    cb({connect: actor.links[key]});
   });
 
   cb({

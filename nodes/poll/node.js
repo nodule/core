@@ -6,5 +6,5 @@
  * It can actually already be done with persist and start and
  * object/create.
  */
-on.input.in = function (data) {
+on.input.in = function (val) {
 };

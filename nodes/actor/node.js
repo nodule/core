@@ -4,15 +4,15 @@ output = function (cb) {
 
   // probably should do almost the same as npmlog monitor
 
-  actor.on('inputRequired', function (data) {
+  actor.on('inputRequired', function (val) {
     cb({
-      error: data
+      error: val
     });
   });
 
-  actor.on('error', function (data) {
+  actor.on('error', function (val) {
     cb({
-      error: data
+      error: val
     });
   });
 

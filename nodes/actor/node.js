@@ -6,69 +6,68 @@ output = function (cb) {
 
   actor.on('inputRequired', function (val) {
     cb({
-      error: val
+      error: $.create(val)
     });
   });
 
   actor.on('error', function (val) {
     cb({
-      error: val
+      error: $.create(val)
     });
   });
 
   actor.on('addNode', function (event) {
     cb({
-      addNode: event.node
+      addNode: $.create(event.node)
     });
   });
 
   actor.on('removeNode', function (event) {
     cb({
-      removeNode: event.node
+      removeNode: $.create(event.node)
     });
   });
 
   actor.on('addLink', function (link) {
     cb({
-      addLink: link
+      addLink: $.create(link)
     });
   });
 
   actor.on('removeLink', function (link) {
     cb({
-      removeLink: link
+      removeLink: $.create(link)
     });
   });
 
   actor.ioHandler.on('connect', function (link) {
     cb({
-      connect: link
+      connect: $.create(link)
     });
   });
 
   actor.ioHandler.on('disconnect', function (link) {
     cb({
-      disconnect: link
+      disconnect: $.create(link)
     });
   });
 
   // useally the actor already started so we send what we have
   // manually
   Object.keys(actor.nodes).forEach(function(key) {
-    cb({addNode: actor.nodes[key]});
+    cb({addNode: $.create(actor.nodes[key]}));
   });
 
   Object.keys(actor.links).forEach(function(key) {
-    cb({addLink: actor.links[key]});
+    cb({addLink: $.create(actor.links[key]}));
 
     // also report them all as connected for now
-    cb({connect: actor.links[key]});
+    cb({connect: $.create(actor.links[key]}));
   });
 
   cb({
-    qm: actor.ioHandler.queueManager,
-    io: actor.ioHandler,
-    pm: actor.processManager
+    io: $.create(actor.ioHandler),
+    pm: $.create(actor.processManager)
   });
 
   // not really useful I guess

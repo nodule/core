@@ -1,11 +1,11 @@
 output = function (cb) {
-  if (input.in[input.method]) {
+  if ($.in[$.method]) {
     cb({
-      out: input.in[input.method].call(input.in, input.args)
+      out: $.in[$.method].call($.in, $.args)
     });
   } else {
     cb({
-      error: new Error('No such input method ' + input.method)
+      error: new Error('No such input method ' + $.method)
     });
   }
 };

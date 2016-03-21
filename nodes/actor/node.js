@@ -1,6 +1,6 @@
 output = function (cb) {
 
-  var actor = input.actor || this.getParent();
+  var actor = $.actor || this.getParent();
 
   // probably should do almost the same as npmlog monitor
 

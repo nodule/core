@@ -33,15 +33,15 @@ module.exports = {
       }
     }
   },
-  fn: function call(input, output, state, done, cb, on) {
+  fn: function call(input, $, output, state, done, cb, on) {
     var r = function() {
-      if (input.in[input.method]) {
+      if ($.in[$.method]) {
         output({
-          out: input.in[input.method].call(input.in, input.args)
+          out: $.write('in', $.in[$.method].call($.in, $.args))
         });
       } else {
         output({
-          error: new Error('No such input method ' + input.method)
+          error: $.create(new Error('No such input method ' + $.method))
         });
       }
     }.call(this);

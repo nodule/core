@@ -55,14 +55,14 @@ output = function (cb) {
   // useally the actor already started so we send what we have
   // manually
   Object.keys(actor.nodes).forEach(function(key) {
-    cb({addNode: $.create(actor.nodes[key]}));
+    cb({addNode: $.create(actor.nodes[key])});
   });
 
   Object.keys(actor.links).forEach(function(key) {
-    cb({addLink: $.create(actor.links[key]}));
+    cb({addLink: $.create(actor.links[key])});
 
     // also report them all as connected for now
-    cb({connect: $.create(actor.links[key]}));
+    cb({connect: $.create(actor.links[key])});
   });
 
   cb({

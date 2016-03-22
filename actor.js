@@ -81,57 +81,57 @@ module.exports = {
       "chix-flow": require('chix-flow')
     }
   },
-  fn: function actor(input, output, state, done, cb, on, chix_flow) {
+  fn: function actor(input, $, output, state, done, cb, on, chix_flow) {
     var r = function() {
-      var actor = input.actor || this.getParent();
+      var actor = $.actor || this.getParent();
 
       // probably should do almost the same as npmlog monitor
 
-      actor.on('inputRequired', function(data) {
+      actor.on('inputRequired', function(val) {
         output({
-          error: data
+          error: $.create(val)
         });
       });
 
-      actor.on('error', function(data) {
+      actor.on('error', function(val) {
         output({
-          error: data
+          error: $.create(val)
         });
       });
 
       actor.on('addNode', function(event) {
         output({
-          addNode: event.node
+          addNode: $.create(event.node)
         });
       });
 
       actor.on('removeNode', function(event) {
         output({
-          removeNode: event.node
+          removeNode: $.create(event.node)
         });
       });
 
       actor.on('addLink', function(link) {
         output({
-          addLink: link
+          addLink: $.create(link)
         });
       });
 
       actor.on('removeLink', function(link) {
         output({
-          removeLink: link
+          removeLink: $.create(link)
         });
       });
 
       actor.ioHandler.on('connect', function(link) {
         output({
-          connect: link
+          connect: $.create(link)
         });
       });
 
       actor.ioHandler.on('disconnect', function(link) {
         output({
-          disconnect: link
+          disconnect: $.create(link)
         });
       });
 
@@ -139,25 +139,24 @@ module.exports = {
       // manually
       Object.keys(actor.nodes).forEach(function(key) {
         output({
-          addNode: actor.nodes[key]
+          addNode: $.create(actor.nodes[key])
         });
       });
 
       Object.keys(actor.links).forEach(function(key) {
         output({
-          addLink: actor.links[key]
+          addLink: $.create(actor.links[key])
         });
 
         // also report them all as connected for now
         output({
-          connect: actor.links[key]
+          connect: $.create(actor.links[key])
         });
       });
 
       output({
-        qm: actor.ioHandler.queueManager,
-        io: actor.ioHandler,
-        pm: actor.processManager
+        io: $.create(actor.ioHandler),
+        pm: $.create(actor.processManager)
       });
 
       // not really useful I guess
